@@ -1,0 +1,64 @@
+*{
+    color: black;
+    text-decoration: none;
+    background-color: white;
+}
+
+header{
+    display: none;
+}
+
+.auxiliar_element{
+    display: none;
+}
+
+#eventID{
+    display: none;
+}
+
+#search_term{
+    display: none;
+}
+
+.event_name{
+    padding: 2% 2% 2% 2%;
+}
+
+.event_organizer a{
+    padding: 2% 2% 2% 2%;
+    text-decoration: none;
+    color: black;
+}
+
+.event_date{
+    padding: 2% 2% 2% 2%;
+}
+
+.event_img{
+    display: none;
+}
+
+h4{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.event_description{
+    padding: 2% 2% 2% 2%;
+}
+
+.tags {
+    display: none;
+}
+
+.social_buttons{
+    display: none;
+}
+
+.commentsPanel{
+    display: none;
+}
+
+footer{
+    display: none;
+}

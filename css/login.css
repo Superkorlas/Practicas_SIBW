@@ -1,0 +1,10 @@
+.login{
+    z-index: 1;
+    position: absolute;
+    float: left;
+    width: 30%;
+    padding: 1em;
+    background-color: burlywood;
+    top: inherit;
+    display: none; 
+}

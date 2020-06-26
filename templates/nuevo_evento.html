@@ -1,0 +1,42 @@
+{% extends "cabecera_auxiliar.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="css/nuevo_evento.css">
+<script type="text/javascript" src="js/editar_evento.js"></script>
+{% endblock %}
+
+{% block main %}
+<div class="main clearfix">
+    <!-- Evento --> 
+
+    {% for error in twig_errors %}
+    <p style="color: #f00;">{{error}}</p>
+    {% endfor %}
+
+    <div class="new_event_form">
+        <form id="new_event_form" action="nuevo_evento.php" method="post" enctype="multipart/form-data">
+            <div>Nombre evento: <input type="text" name="title" value="{{event.title}}" required/></div><br>
+            <div>Organizador:  <input type="text" name="organizer" value="{{event.organizer}}" required/></div><br>
+            <div>URL organizador: <input type="url" name="organizerLink" value="{{event.organizerLink}}"/></div><br>
+            <div>Fecha del evento: <input type="date" name="date" value="{{ event.eventDate }}" required/></div><br>
+            <div>Imagen del evento:
+                <input onClick="preparingForShowImage()" id="file_image" type="file" name="image" value=""
+                    {% if is_editing == false %}
+                    required                
+                    {% endif %}
+                />
+                <img id="preview_image" class="preview_image" src="{{ event.image }}"/>
+            <br></div>
+            <div>Descripción:<br> 
+                    <textarea name="description" form="new_event_form" rows="50" cols="100" value="{{event.description}}" required>{{event.description}}</textarea>
+            </div><br>
+            <div>Etiquetas: <input type="text" name="tags" value="{{event.tags}}"/></div><br>
+            {% if is_editing == true %}
+                <div class="eventID"><input type="text" name="eventID" value="{{ event.idEvent }}"/></div>
+                <input type="submit" value="Editar evento" />
+            {% else %}
+                <input type="submit" value="Crear evento" />
+            {% endif %}
+        </form>
+    </div>
+{% endblock %}

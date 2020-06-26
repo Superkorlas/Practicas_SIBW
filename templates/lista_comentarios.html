@@ -1,0 +1,32 @@
+{% extends "cabecera_auxiliar.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="css/lista_comentarios.css">
+<script type="text/javascript" src="js/enviar_comentario.js"></script>
+
+<!-- Palabras prohibidas -->
+<div id="banned_words"> 
+    {% for word in banned_words %} {{ word }} {% endfor %}
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="main clearfix">
+    <!-- Evento -->
+    <div id="comments" class="comments">
+
+    </div>
+    {% if user.role == "super" or user.role == "moderator" %}
+    <div id="commentForm" class="commentForm">
+        <p id="name">{{user.userName}}</p>
+        <p id="email">{{user.email}}</p>
+        <p>Comentario:</p>
+        <textarea id="commentText" class="commentText" oninput="check_comment()" name="Comentario" rows="5" cols="40"></textarea>
+        <div class="EditButton"></div>
+            <input id="edit" class="edit" type="button" value="Editar" onclick="edit_comment()">
+            <input id="cancel" class="edit" type="button" value="Cancelar" onclick="cancel_edit_comment()">
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

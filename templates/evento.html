@@ -1,0 +1,126 @@
+{% extends "cabecera_auxiliar.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="css/evento.css">
+<link rel="stylesheet" type="text/css" href="css/panel_comentarios.css">
+<script type="text/javascript" src="js/enviar_comentario.js"></script>
+<script type="text/javascript" src="js/resaltar_busqueda.js"></script>
+
+<!-- Palabras prohibidas -->
+<div id="banned_words"> 
+    {% for word in banned_words %} {{ word }} {% endfor %}
+</div>
+<div id="eventID">{{ event.idEvent }}</div>
+<div id="search_term">{{ search }}</div>
+{% endblock %}
+
+{% block main %}
+<div class="main clearfix">
+    <!-- Evento -->
+    <img class="event_img" src= {{ event.image }} />
+    <h1 id="title" class="event_name">{{ event.title }}
+    {% if user.role == "super" or user.role == "gestor" %}
+        <a href="nuevo_evento.php?event={{ event.idEvent }}">Editar</a>
+        <a href="eliminar_evento.php?event={{ event.idEvent }}">Eliminar</a>
+        {% if event.is_published == false %}
+            <a href="publicar_evento.php?event={{ event.idEvent }}&event_screen">Publicar</a>
+        {% endif %}
+    {% endif %}
+    </h1>
+    <h2 class="event_organizer"><a href={{ event.organizerLink }}><div id="organizer">{{ event.organizer }}</div></a></h2>
+    <h3 class="event_date">{{ event.eventDate }}</h3>
+
+    <div id="description" class="event_description">
+        {{ event.description | raw }}
+    </div>
+
+    <div id="tags"  class="tags">
+        <p><br>
+            {% for tag in event.tags %}
+            <a class="tag" href="index.php?tag={{ tag }}">#{{ tag }}</a> 
+            {% endfor %}
+        </p>
+    </div>
+
+    <div class="social_buttons">
+        <a href="https://twitter.com/AlejandroPlat12"><img src="img/eventos/twitter.jpg"></a>
+        <a href="https://www.facebook.com/"><img src="img/eventos/facebook.jpg"></a>
+        <a href="evento_imprimir.php?event={{ event.idEvent }}"><img src="img/eventos/imprimir.png"></a>
+        <input type="image" src="img/eventos/comentario.jpg" onclick="show_comments_panel()">
+    </div>
+    <div id="commentsPanel" class="commentsPanel">
+        <div id="comments" class="comments">
+
+        </div>
+        {% if user.role != "anon" %}
+        <div id="commentForm" class="commentForm">
+            <p id="name">{{user.userName}}</p>
+            <p id="email">{{user.email}}</p>
+            <p>Comentario:</p>
+            <textarea id="commentText" class="commentText" oninput="check_comment()" name="Comentario" rows="5" cols="40"></textarea>
+            <input class="send" id="send" type="button" value="Enviar" onclick="send_comment()">
+            <div class="EditButton"></div>
+                <input id="edit" class="edit" type="button" value="Editar" onclick="edit_comment()">
+                <input id="cancel" class="edit" type="button" value="Cancelar" onclick="cancel_edit_comment()">
+            </div>
+        </div>
+        {% else %}
+        <div id="commentForm" class="commentForm">
+            Registrate para poder comentar.
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- 
+Descripción ej. para BD
+<h4>¡LLega la superfiebre!</h4>
+        <p>
+            Disfruta de bonificadores a la Exp. durante 3 semanas en todos los servidores. ¡Donde quieras
+            y cuando quieras! ¡De cabeza a la aventura!
+        </p>
+        <p>
+            Los bonificadores tendrán efecto continuado desde el 26 de febrero a las 9:00 (UTC) hasta el 18 de
+            marzo a las 9:00 (UTC).
+        </p>
+        <p>
+            Dichos bonificadores de Exp. se acumularán con otros efectos bonificadores como los de [Pergamino de
+            la usura],
+            [Pergamino bendito (100 min)], [Macuto con útiles], habilidades de mercenario, elixires y el
+            servidor Arsha. Eso sí, los
+            bonificadores de este evento sustituirán a los de «¡Llega la fiebre!» y a los de los servidores de
+            Olvia.
+        </p>
+        <p>
+            La bonificación a la Exp. (Combate) del evento no se aplicará a personajes por debajo del nivel 50,
+            pero sí se aplicarán
+            los bonificadores de Exp. (Habilidades), Exp. (Profesiones) y Obtención de objetos.
+        </p>
+        <p>
+            La Exp. ganada en misiones no se verá afectada por los bonificadores anteriores.
+        </p>
+
+        <h4>Rebelión de los jefes errantes.</h4>
+        <p>
+            Aparición adicional de Vell.
+        </p>
+        <p>
+            Obtén [Evento - Anillo brillante].
+        </p>
+        <p>
+            Podrás intercambiar [Evento - Anillo brillante] por [Pertenencias de un aventurero] con Marcella en
+            Velia.
+        </p>
+
+        <h4>Las cuatro peticiones de Lara.</h4>
+        <p>
+            ¡Lara de Heidel quiere pedirte cuatro cosas! ¡Cumple las peticiones de Lara para obtener suculentas
+            recompensas!
+        </p>
+        <p>
+            Para ver más información sobre el evento:
+            <a href="https://www.blackdesertonline.com/news/view/3653">Celebración del preaniversario</a>
+        </p>
+-->
+
+{% endblock %}

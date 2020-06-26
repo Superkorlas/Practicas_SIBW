@@ -1,0 +1,55 @@
+#banned_words{
+    display: none;
+}
+
+#eventID{
+    display: none;
+}
+
+#search_term{
+    display: none;
+}
+
+strong {
+    background-color: yellow;
+}
+
+.event_name{
+    padding: 2% 2% 2% 2%;
+}
+
+.event_organizer a{
+    padding: 2% 2% 2% 2%;
+    text-decoration: none;
+    color: black;
+}
+
+.event_organizer a:hover{
+    text-decoration: underline; 
+}
+
+.event_date{
+    padding: 2% 2% 2% 2%;
+}
+
+.event_img{
+    float: right;
+    width: 30%;
+}
+
+h4{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.social_buttons{
+    float: bottom;
+    padding-top: 5%;
+}
+
+.social_buttons img{
+    width: 3em;
+    height: 3em;
+    align-self: center;
+    background-color: white;
+}

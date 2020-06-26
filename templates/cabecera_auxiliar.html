@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Black Desert Events</title>
+    <link rel="stylesheet" type="text/css" href="css/header_and_auxiliar.css">
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/busqueda.js"></script>
+    {% block head %}
+    {% endblock %}
+</head>
+
+<body>
+    <!-- Cabecera -->
+    <header>
+        <a href="index.php"><img class="logo" src="img/logo.png" /></a>
+        <div class="menu">
+            <h1 class="title">Black Desert Events</h1>
+            <div class="navbar">
+                <ul>
+                    <li>
+                        {% if user.role == "anon" %}
+                        <a href="#" onclick="show_login()">Iniciar Sesión</a>
+                        {% else %}
+                        <a href="cerrar_sesion.php">Cerrar Sesión</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if user.role == "anon" %}
+                        <a href="#">Menu 2</a>
+                        {% else %}
+                        <a href="editar_perfil.php">Editar perfil</a>
+                        {% endif %}
+                    </li>
+                    <li>
+                        {% if user.role != "super" %}
+                        <a href="#">Menu 3</a>
+                        {% else %}
+                        <a href="cambiar_permisos.php">Cambiar permisos</a>
+                        {% endif %}
+                    </li>
+                </ul>
+                <div id="loginPanel" class="login">
+                    <form action="iniciar_sesion.php" method="post">
+                        Email: <input type="email" name="email" /><br>
+                        Contraseña: <input type="password" name="password" /><br>
+                        <input type="submit" value="Iniciar Sesión" />
+                    </form>
+                    <button onclick="show_sign_up()">No estoy registrado</button>
+                </div>
+                <div id="signUpPanel" class="login">
+                    <form action="registrarse.php" method="post">
+                        Nombre: <input type="text" name="name" /><br>
+                        Email: <input type="email" name="email" /><br>
+                        Contraseña: <input type="password" name="password" /><br>
+                        <input type="submit" value="Registrarse" />
+                    </form>
+                </div>
+                <div>
+                    <input id="search" class="search" type="search" name="search" placeholder="buscar eventos" onfocusout="focus_out()" onfocus="word_added()" oninput="word_added()"><br>
+                    <div id="search_results" class="search_results">
+                        <ul>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cuerpo -->
+    <div class="center">
+        <div class="auxiliar_element">
+            <ul>
+                <li>
+                    {% if user.role == "super" or user.role == "moderator" %}
+                    <a href="lista_comentarios.php">Ver todos los comentarios</a>
+                    {% else %}
+                    <a href="#">Enlace importante 3</a>
+                    {% endif %}
+                </li>
+                <li><a href="#">Enlace importante 2</a></li>
+                <li><a href="#">Enlace importante 3</a></li>
+            </ul>
+        </div>
+        {% block main %}
+
+        {% endblock %}
+    </div>
+    <!-- Pie -->
+    <footer>
+        <p>Posted by: Alejandro de la Plata Ramos</p>
+        <p>Contact information: <a href="#">alejandro@correo.ugr.es</a>.</p>
+    </footer>
+</body>
+
+</html>

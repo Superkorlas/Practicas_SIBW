@@ -1,0 +1,34 @@
+{% extends "cabecera_auxiliar.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="css/portada.css">
+{% endblock %}
+
+{% block main %}
+<div class="main clearfix">
+    {% for event in events %}
+    <div class="event">
+        <a class="event_link" href="evento.php?event={{ event.idEvent }}">
+            <img class="event_image" src={{ event.image }} />
+            <p>{{ event.title }}</p>
+        </a>
+        {% if user.role == "super" or user.role == "gestor" %}
+            <a href="nuevo_evento.php?event={{ event.idEvent }}">Editar</a>
+            <a href="eliminar_evento.php?event={{ event.idEvent }}">Eliminar</a>
+            {% if event.is_published == false %}
+                <a href="publicar_evento.php?event={{ event.idEvent }}">Publicar</a>
+            {% endif %}
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    {% if user.role == "super" or user.role == "gestor" %}
+    <div class="event">
+        <a href="nuevo_evento.php">
+            <img class="event_image" src="../img/eventos/nuevo_evento.jpg" />
+            <p>Crear nuevo evento</p>
+        </a>
+    </div>
+    {% endif %}
+
+{% endblock %}

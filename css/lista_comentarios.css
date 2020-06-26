@@ -1,0 +1,51 @@
+#banned_words{
+    display: none;
+}
+
+.comments{
+    height: 70%;
+    top: 2%;
+    left: 2%;
+    right: 2%;
+    margin-right: 20%;
+    overflow: auto  ;
+}
+
+.comments p{
+    background-color: bisque;
+    padding: 1%;
+    margin: 1%;
+}
+
+.EditButton {
+    float: left;
+    align-content: center;
+}
+
+.EditedMessage {
+    font-size: small;
+    font-style: italic;
+}
+
+.edit{
+    display: none;
+}
+
+.commentForm{
+    height: 20%;
+    display: block;
+    float: bottom;
+    bottom:2%;
+    left: 2%;
+    right: 2%;
+    padding: 2%;
+    margin-right: 20%;
+    background-color: blanchedalmond;
+}
+
+.commentText{
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: block;
+}

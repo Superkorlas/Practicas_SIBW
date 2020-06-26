@@ -1,0 +1,30 @@
+{% extends "cabecera_auxiliar.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="css/editar_perfil.css">
+{% endblock %}
+
+{% block main %}
+<div class="main clearfix">
+    
+    {% if user.role == "super" %}
+        <form action="cambiar_permisos.php" method="POST">
+            <ul>
+            {% for user in users %}
+                <li name="email"> {{ user.email }} 
+                    <select name = {{ user.email }}>
+                        <option selected value={{ user.role }}> {{ user.role }} </option>
+                        {% for role in roles %}
+                            {% if user.role != role and role != "anon" %}
+                                <option value={{ role }}>{{ role }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+            {% endfor %}
+            </ul>
+            <input type="submit" value="Aplicar cambios" />
+        </form>
+
+    {% endif %}
+
+{% endblock %}

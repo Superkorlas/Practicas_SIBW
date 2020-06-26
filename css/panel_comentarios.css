@@ -1,0 +1,64 @@
+.commentsPanel{
+    z-index: 1;
+    position: fixed;
+    float: right;
+    width: 30%;
+    margin-right: 1%;
+    background-color: burlywood;
+    right: 0%;
+    top: 1%;
+    bottom: 1%;
+    display: none;
+}
+
+.comments{
+    height: 70%;
+    top: 2%;
+    left: 2%;
+    right: 2%;
+    overflow: auto  ;
+}
+
+.comments p{
+    background-color: bisque;
+    padding: 1%;
+    margin: 1%;
+}
+
+.EditButton {
+    float: left;
+    align-content: center;
+}
+
+.EditedMessage {
+    font-size: small;
+    font-style: italic;
+}
+
+.edit{
+    display: none;
+}
+
+.commentForm{
+    height: 20%;
+    position: absolute;
+    display: block;
+    bottom:2%;
+    left: 2%;
+    right: 2%;
+    padding: 2%;
+    background-color: blanchedalmond;
+}
+
+.commentText{
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: block;
+}
+
+.social_buttons input{
+    width: 4em;
+    height: 4em;
+    background-color: white;
+}

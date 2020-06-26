@@ -1,0 +1,27 @@
+{% extends "cabecera_auxiliar.html" %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="css/editar_perfil.css">
+{% endblock %}
+
+{% block main %}
+<div class="main clearfix">
+    
+    {% if user.role != "anon" %}
+    <div class="profile">
+      <form action="editar_perfil.php" method="post">
+        Nombre: <input type="text" name="name" value={{user.userName}} />
+        <input type="submit" value="Actualizar" />
+      </form><br>
+      <form action="editar_perfil.php" method="post">
+        Email: <input type="email" name="email" value={{user.email}} />
+        <input type="submit" value="Actualizar" />
+      </form><br>
+      <form action="editar_perfil.php" method="post">
+        Contraseña: <input type="password" name="password"/>
+        <input type="submit" value="Actualizar" />
+      </form><br>
+    </div>
+    {% endif %}
+
+{% endblock %}
